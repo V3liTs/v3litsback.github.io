@@ -1,4 +1,5 @@
 <?php
+require_once "inc/vars.php";
 
 /**
  * showCategory
@@ -93,4 +94,51 @@ function showProductTable($catalogo)
         </tbody>
     </table>
 <?php
+}
+
+/**
+ * showTodayDate
+ *
+ * @param  mixed $onlyDate
+ * @return string
+ */
+function showTodayDate($onlyDate = true): string
+{
+    $dayWeek = ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom',];
+    $month = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'];
+
+    $today = getdate();
+    $date = $dayWeek[$today['wday'] - 1] . " " . $today['mday'] . " " . $month[$today['mon'] - 1] . " " . $today['year'];
+    if (!$onlyDate) {
+        $date = $date . ' - ' . $today['hours'] . ":" . $today['minutes'];
+    }
+    return $date;
+}
+
+
+function updateFileJson(array $stocksArray, string $path): bool
+{
+    $jsonString = json_encode($stocksArray);
+    $fp = fopen($path, 'w');
+    $result = fwrite($fp, $jsonString);
+    fclose($fp);
+    return $result;
+}
+
+
+/**
+ * readFileJson
+ *
+ * @param  mixed $path
+ * @return array
+ */
+function readFileJson(string $path): array | null
+{
+    try {
+        $jsonString = file_get_contents($path);
+        return json_decode($jsonString, true);
+    } catch (Exception $e) {
+        echo "Il file non esiste.";
+        return null;
+    }
 }
