@@ -1,0 +1,16 @@
+[
+  {
+    "nome": "guest",
+    "cognome": "guest",
+    "username": "guest",
+    "pwd": "guest",
+    "photo": "uploads/idcard.jpeg"
+  },
+  {
+    "nome": "guestb",
+    "cognome": "guestb",
+    "username": "guestb",
+    "pwd": "guestb",
+    "photo": "uploads/idcard.jpeg"
+  }
+]
