@@ -66,3 +66,31 @@ DB  : musadbshop
             zip (varchar 6)
             last update timestamp
             creadtion date timestamp
+
+
+
+            ALTER TABLE order_details ADD CONTRAINT 'fk_orderdetails_order_id'
+            FOREIGN KEY (order_id) REFERENCES orders (id)
+            ON DELETE CASCADE
+            ON UPDATE RESTRICT;
+
+
+            ALTER TABLE order_details ADD CONSTRAINT fk_orderdetails_order_id FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE RESTRICT;
+
+                       
+             ALTER TABLE order_details ADD CONSTRAINT fk_orderdetails_products_id FOREIGN KEY (product_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE RESTRICT;
+
+             ALTER TABLE products ADD CONSTRAINT fk_products_products_id FOREIGN KEY (category_id) REFERENCES categories (id) ON DELETE CASCADE ON UPDATE RESTRICT;
+             
+            ALTER TABLE orders ADD CONSTRAINT fk_orders_costumer_id FOREIGN KEY (costumer_id) REFERENCES costumers (id) ON DELETE CASCADE ON UPDATE RESTRICT;
+
+            ALTER TABLE costumers ADD CONSTRAINT fk_costumers_addresses_id FOREIGN KEY (address_id) REFERENCES addresses (id) ON DELETE CASCADE ON UPDATE RESTRICT;
+
+
+            ALTER TABLE  `costumers` ADD KEY `idx_costumers_surname` (`surname`);
+            ALTER TABLE  `products` ADD KEY `idx_products_name` (`name`);
+
+
+
+           
+
