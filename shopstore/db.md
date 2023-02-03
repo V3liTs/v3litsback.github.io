@@ -26,7 +26,7 @@ DB  : musadbshop
 
        orders
             id 1 (MEDIUMINT UNSIGNED)
-            order_num (es 1-musa2023) (non solo numerico)
+            order_num (es 1-musa2023) (non solo numerico) (Domanda il professore come fare a settarlo in quella maniera)
             id_customer -> customers _ id (MEDIUMINT UNSIGNED)
             creation date timestamp
             last modif timestamp
