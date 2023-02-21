@@ -29,6 +29,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        \Log::info("Richiesta di inserimento prodotto ricevuta");
         $request->validate([
             'title'=>'required',
             'description'=>'required',
