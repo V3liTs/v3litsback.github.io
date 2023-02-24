@@ -7,6 +7,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\BladeTesterController;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\DbController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,7 +99,7 @@ Route::get('/category/{category}', function (string $category) {
 Route::get('/user/{id}', function (Request $request, string $id) {
     if ($request->route()->named('user')) {
         echo "Path corretto!<br>";
-        var_dump($request->query());  //TODO passare parametri al controller
+        var_dump($request->query()); //TODO passare parametri al controller
     }
     return "Il mio $id";
 })->whereNumber('id')->name("user");
@@ -121,3 +122,11 @@ Route::get('/hellocontroller/sendmailcheck', [HelloController::class, 'sendMailC
 
 Route::get('/testblade/', [BladeTesterController::class, 'index']);
 Route::get('/testbladechild/', [BladeTesterController::class, 'child']);
+
+Route::get('/dbtest/show/{param?}', [DbController::class, 'show']);
+Route::get('/dbtest/showqb', [DbController::class, 'showQb']);
+Route::post('/dbtest/insert', [DbController::class, 'insert']);
+Route::get('/dbtest/insert', function () {
+    return view('companies.dbcreate');
+});
+Route::delete('/dbtest/delete/{id}', [DbController::class, 'delete']);
