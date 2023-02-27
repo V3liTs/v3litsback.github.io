@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Phone;
 
-class Controller extends BaseController
+class UserController extends Controller
 {
-    use AuthorizesRequests, ValidatesRequests;
+    public function phone($id)
+    {
+        //echo User::find($id)->phone;
+        $number = User::find($id)->phone;
+        return view('phone', compact('number'));
+    }
+
+    public function getUserFromIdPhone($idphone)
+    {
+        echo Phone::find($idphone)->user;
+    }
+
 }
